@@ -1,0 +1,45 @@
+<div style="font-size: 40px;">List Breweries</div>
+<mat-form-field appearance="fill">
+  <mat-label>select city</mat-label>
+  <mat-select  (selectionChange)="cityChange($event)">
+    <mat-option *ngFor="let city of cityList" [value]="city">
+      {{city}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>select name</mat-label>
+  <mat-select (selectionChange)="nameChange($event)">
+    <mat-option *ngFor="let name of nameList" [value]="name">
+      {{name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<hr><hr>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="brewery_type">
+    <th mat-header-cell *matHeaderCellDef> brewery_type </th>
+    <td mat-cell *matCellDef="let element"> {{element.brewery_type}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef> phone </th>
+    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+  </ng-container>
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef> city </th>
+    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+  </ng-container>
+  <ng-container matColumnDef="created_at">
+    <th mat-header-cell *matHeaderCellDef> created_at </th>
+    <td mat-cell *matCellDef="let element"> {{element.created_at| date:'dd-MM-yyyy h:mm a'}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>        
+<!-- <router-outlet></router-outlet> -->
